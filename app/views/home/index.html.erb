@@ -1,1 +1,7 @@
-<%= image_tag  "Tesla_T_symbol.svg" %>
+<div style="text-align: center">
+  <%= image_tag  "Tesla_T_symbol.svg" %>
+
+  <p>Your Model 3 is <%= @charge_state["charging_state"] %></p>
+  <p>Battery Level: <%= @charge_state["battery_level"] %>%</p>
+  <p>Estimated Range: <%= @charge_state["battery_range"] %> mile</p>
+</div>
