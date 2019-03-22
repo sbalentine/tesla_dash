@@ -1,7 +1,27 @@
-<div style="text-align: center">
-  <%= image_tag  "Tesla_T_symbol.svg" %>
+<script>
+  function initMap(lat, lng) {
+    var myCoords = new google.maps.LatLng(lat, lng);
+    var mapOptions = {
+      center: myCoords,
+      zoom: 16
+    };
+    var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+    var marker = new google.maps.Marker({
+      position: myCoords,
+      map: map
+    });
+  }
 
-  <p>Your Model 3 is <%= @charge_state["charging_state"] %></p>
-  <p>Battery Level: <%= @charge_state["battery_level"] %>%</p>
-  <p>Estimated Range: <%= @charge_state["battery_range"] %> mile</p>
+  document.addEventListener("DOMContentLoaded", function(){
+      initMap(<%=@drive_state['latitude']%>, <%=@drive_state['longitude']%>)
+  });
+</script>
+
+<div>
+  <%= image_tag "Tesla_T_symbol.svg", width: "10%" %>
+  <%= image_tag "https://static-assets.tesla.com/v1/compositor/?model=m3&view=STUD_3QTR&size=1440&options=DV2W,IN3PW,COL2-PMNG,W38B,MT305", width: "50%" %>
+  <p>Your Car's Charging State is: <%= @car.charge_state["charging_state"] %></p>
+  <p>Battery Level: <%= @car.charge_state["battery_level"] %>%</p>
+  <p>Estimated Range: <%= @car.charge_state["battery_range"] %> mile</p>
+  <div id="map"></div>
 </div>
