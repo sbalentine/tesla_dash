@@ -6,7 +6,7 @@ class YammerRealtimeJob < ApplicationJob
     YammerRealtime::Client.new.start(channel_id) do |message, references|
       if !sender_is_current_user?(message) &&
          private_message?(message) &&
-         car_is_driving?
+         car_is_driving?(message)
         Yammer.create_message("Scott is driving right now and will respond shortly.", replied_to_id: message['id'])
       end
     end
@@ -23,6 +23,7 @@ class YammerRealtimeJob < ApplicationJob
   end
 
   def car_is_driving?
+    return true if message['body']['plain'].include?("scottisdriving")
     TESLA_API.vehicles.first.drive_state['speed']
   end
 end
