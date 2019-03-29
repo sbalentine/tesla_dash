@@ -2,7 +2,7 @@ class YammerRealtimeJob < ApplicationJob
   queue_as :default
 
   def perform(*args)
-    channel_id = "Mjk6MTA3OjE2Mjk1ODkxMzU"
+    channel_id = "Mjk6ODQzMDM5OjE3MDE2NzI5Mzc"
     YammerRealtime::Client.new.start(channel_id) do |message, references|
       if (!sender_is_current_user?(message) &&
          private_message?(message) &&
