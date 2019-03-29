@@ -17,11 +17,10 @@
   });
 </script>
 
-<div>
-  <%= image_tag "Tesla_T_symbol.svg", width: "10%" %>
-  <%= image_tag "https://static-assets.tesla.com/v1/compositor/?model=m3&view=STUD_3QTR&size=1440&options=DV2W,IN3PW,COL2-PMNG,W38B,MT305", width: "50%" %>
+<div style="text-align: center">
+  <%= image_tag "https://static-assets.tesla.com/v1/compositor/?model=m3&view=STUD_3QTR&size=1440&options=DV2W,IN3PW,COL2-PMNG,W38B,MT305", width: "40%" %>
   <p>Your Car's Charging State is: <%= @car.charge_state["charging_state"] %></p>
   <p>Battery Level: <%= @car.charge_state["battery_level"] %>%</p>
   <p>Estimated Range: <%= @car.charge_state["battery_range"] %> mile</p>
-  <div id="map"></div>
+  <div id="map" style="margin-left: auto; margin-right: auto"></div>
 </div>
